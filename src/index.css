@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas-soft font-sans text-ink antialiased;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  :focus-visible {
+    outline: 2px solid #0075de;
+    outline-offset: 2px;
+  }
+}
+
+/* Sheet: A4 at 96dpi, scaled down visually by the preview wrapper. */
+.cv-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  color: #1c1c1c;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  padding: 14mm 15mm;
+  box-sizing: border-box;
+}
+.cv-sheet h1 {
+  font-size: 22pt;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+.cv-sheet .cv-title {
+  font-size: 12pt;
+  color: #444;
+  margin: 2px 0 0;
+}
+.cv-sheet .cv-contact,
+.cv-sheet .cv-meta {
+  font-size: 9.5pt;
+  color: #555;
+  margin: 6px 0 0;
+}
+.cv-sheet .cv-section {
+  margin-top: 14px;
+}
+.cv-sheet .cv-heading {
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.cv-sheet .cv-entry {
+  margin-bottom: 9px;
+}
+.cv-sheet .cv-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cv-sheet .cv-date {
+  color: #666;
+  font-size: 9.5pt;
+  white-space: nowrap;
+}
+.cv-sheet .cv-sub {
+  color: #555;
+  font-size: 9.5pt;
+}
+.cv-sheet .cv-body {
+  margin: 0;
+  white-space: pre-line;
+}
+.cv-sheet .cv-bullets {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  list-style: none;
+}
+.cv-sheet .cv-bullets li {
+  position: relative;
+  margin-bottom: 2px;
+}
+.cv-sheet .cv-bullets li::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 0.55em;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--bullet, #333);
+}
+.cv-sheet .cv-plain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv-sheet .cv-chips {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.cv-sheet .cv-chip {
+  border: 1px solid;
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 9.5pt;
+}
+
+/* Classic: serif headings, centred header. */
+.cv-classic {
+  font-family: Georgia, "Times New Roman", serif;
+}
+.cv-classic .cv-head-center {
+  text-align: center;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 10px;
+}
+.cv-classic .cv-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  border-bottom-width: 1px;
+}
+
+/* Minimal: generous spacing, light sans. */
+.cv-minimal {
+  padding-top: 4px;
+}
+.cv-minimal h1 {
+  font-weight: 300;
+  font-size: 26pt;
+  letter-spacing: -0.01em;
+}
+.cv-minimal .cv-section {
+  margin-top: 22px;
+}
+.cv-minimal .cv-heading {
+  border-bottom: none;
+  padding-bottom: 0;
+  font-weight: 600;
+  font-size: 8.5pt;
+}
+.cv-minimal .cv-entry {
+  margin-bottom: 12px;
+}
+
+/* Compact: two columns, tight. */
+.cv-compact {
+  font-size: 9.5pt;
+}
+.cv-compact .cv-section {
+  margin-top: 10px;
+}
+.cv-compact .cv-cols {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 22px;
+}
+.cv-compact .cv-entry {
+  margin-bottom: 6px;
+}
+
+/* Modern: coloured sidebar. Sidebar bleeds to the page edges. */
+.cv-modern {
+  display: grid;
+  grid-template-columns: 62mm 1fr;
+  margin: -14mm -15mm;
+  min-height: 297mm;
+}
+.cv-modern .cv-side {
+  color: #fff;
+  padding: 14mm 9mm;
+}
+.cv-modern .cv-side h1 {
+  font-size: 19pt;
+}
+.cv-modern .cv-side-title {
+  margin: 4px 0 0;
+  opacity: 0.85;
+}
+.cv-modern .cv-side-block {
+  margin-top: 16px;
+  font-size: 9.5pt;
+}
+.cv-modern .cv-side-block h3 {
+  font-size: 8.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  opacity: 0.8;
+}
+.cv-modern .cv-side-block p {
+  margin: 0 0 3px;
+  word-break: break-word;
+}
+.cv-modern .cv-main {
+  padding: 14mm 13mm;
+}
+.cv-modern .cv-heading {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Print: only the CV sheet, A4, no browser chrome. */
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  .how-to-card {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  #cv-print-area,
+  #cv-print-area * {
+    visibility: visible !important;
+  }
+  #cv-print-area {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    transform: none !important;
+  }
+  .cv-print-wrap {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .cv-sheet {
+    box-shadow: none !important;
+    min-height: 0;
+    height: auto;
+    padding: 12mm 14mm;
+  }
+  .cv-modern {
+    margin: -12mm -14mm;
+  }
+  .cv-modern .cv-side {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cv-sheet .cv-chip,
+  .cv-sheet .cv-bullets li::before {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
